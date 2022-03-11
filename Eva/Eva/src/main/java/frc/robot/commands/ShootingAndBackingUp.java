@@ -18,7 +18,7 @@ public class ShootingAndBackingUp extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
 
-      new RunIntakeInAntonymous(RobotContainer.getInstance().m_intake, 1).withTimeout(3),
+      new RunIntakeWithSpeed(RobotContainer.getInstance().m_intake, 1).withTimeout(3),
       new AutoDriveRobotBackward(RobotContainer.getInstance().m_driveTrain, .5).withTimeout(3)
     );
   }

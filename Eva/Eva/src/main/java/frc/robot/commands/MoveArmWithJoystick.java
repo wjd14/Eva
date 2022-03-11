@@ -4,22 +4,24 @@
 
 package frc.robot.commands;
 
+import frc.robot.subsystems.*;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
+import frc.robot.commands.MoveArmWithJoystick;
 import frc.robot.RobotContainer;
 
-public class TeleOpRunIntake extends CommandBase {
-  /** Creates a new TeleOpRunIntake. */
+public class MoveArmWithJoystick extends CommandBase {
 
-private final Intake m_Intake;
+ private final Arm m_Arm;
 
-  public TeleOpRunIntake(Intake subsystem) {
-    m_Intake = subsystem;
-    addRequirements(m_Intake);
+  public MoveArmWithJoystick(Arm subsystem) {
+    m_Arm = subsystem;
+    addRequirements(m_Arm);
 
 
     // Use addRequirements() here to declare subsystem dependencies.
   }
+
 
   // Called when the command is initially scheduled.
   @Override
@@ -28,15 +30,17 @@ private final Intake m_Intake;
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double rotation = RobotContainer.getInstance().getScoreController().getRawAxis(1)* 0.5;
+    double armSpeed = RobotContainer.getInstance().getScoreController().getRawAxis(1) * 0.5;
 
-    m_Intake.SpinIntake(rotation);
+    m_Arm.setArmSpeed(armSpeed);
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_Intake.SpinIntake(0); 
+
+    m_Arm.setArmSpeed(0);
   }
 
   // Returns true when the command should end.

@@ -4,24 +4,24 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.*;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.commands.TeleOpMoveArm;
-import frc.robot.RobotContainer;
+import frc.robot.subsystems.Arm;
+import frc.robot.commands.MoveArmWithSpeed;
 
-public class TeleOpMoveArm extends CommandBase {
 
- private final Arm m_Arm;
+public class MoveArmWithSpeed extends CommandBase {
+  /** Creates a new ArmDown. */
+  private final Arm m_Arm;
+  private final double m_Speed;
 
-  public TeleOpMoveArm(Arm subsystem) {
+  public MoveArmWithSpeed(Arm subsystem, double speed) {
     m_Arm = subsystem;
     addRequirements(m_Arm);
+    m_Speed = speed;
 
 
     // Use addRequirements() here to declare subsystem dependencies.
   }
-
 
   // Called when the command is initially scheduled.
   @Override
@@ -30,16 +30,12 @@ public class TeleOpMoveArm extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double armSpeed = RobotContainer.getInstance().getScoreController().getRawAxis(1) * 0.5;
-
-    m_Arm.setArmSpeed(armSpeed);
-
+    m_Arm.setArmSpeed(m_Speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
     m_Arm.setArmSpeed(0);
   }
 

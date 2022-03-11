@@ -5,24 +5,22 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Arm;
-import frc.robot.commands.MoveArm;
-import frc.robot.commands.TeleOpMoveArm;
+import frc.robot.subsystems.*;
+public class RunIntakeWithSpeed extends CommandBase {
 
+private final Intake m_Intake;
+private double m_rotation=0;
 
-public class ArmMover extends CommandBase {
-  /** Creates a new ArmDown. */
-  private final Arm m_Arm;
-  private final double m_Speed;
+    public RunIntakeWithSpeed(Intake subsystem, double rotation) {
+      m_Intake = subsystem;
+      addRequirements(m_Intake);
+      m_rotation = rotation;
+    }
 
-  public ArmMover(Arm subsystem, double speed) {
-    m_Arm = subsystem;
-    addRequirements(m_Arm);
-    m_Speed = speed;
+  /** Creates a new RunIntake
+   * 
+   * InAntonymous. */
 
-
-    // Use addRequirements() here to declare subsystem dependencies.
-  }
 
   // Called when the command is initially scheduled.
   @Override
@@ -31,13 +29,16 @@ public class ArmMover extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Arm.setArmSpeed(m_Speed);
+    m_Intake.SpinIntake(m_rotation);
+
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_Arm.setArmSpeed(0);
+   m_Intake.SpinIntake(0);
+
   }
 
   // Returns true when the command should end.
