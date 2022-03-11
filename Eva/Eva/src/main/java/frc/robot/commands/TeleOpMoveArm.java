@@ -4,19 +4,25 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.*;
 import frc.robot.subsystems.*;
-public class AutoDriveRobotTurn extends CommandBase {
-  private final DriveTrain m_driveTrain;
-  private double m_rotate=0; 
-  /** Creates a new AutoDriveRobotForward. */
-  public AutoDriveRobotTurn(DriveTrain subsystem, double inputrotatespeed) {
+
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.commands.MoveArm;
+import frc.robot.commands.TeleOpMoveArm;
+import frc.robot.RobotContainer;
+
+public class TeleOpMoveArm extends CommandBase {
+
+ private final Arm m_Arm;
+
+  public TeleOpMoveArm(Arm subsystem) {
+    m_Arm = subsystem;
+    addRequirements(m_Arm);
+
+
     // Use addRequirements() here to declare subsystem dependencies.
-    m_driveTrain = subsystem;
-    addRequirements(m_driveTrain);
-    m_rotate = inputrotatespeed;
   }
+
 
   // Called when the command is initially scheduled.
   @Override
@@ -25,14 +31,17 @@ public class AutoDriveRobotTurn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  m_driveTrain.driveArcadeStyle(0,m_rotate);
+    double armSpeed = RobotContainer.getInstance().getScoreController().getRawAxis(1) * 0.5;
+
+    m_Arm.setArmSpeed(armSpeed);
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-  m_driveTrain.driveArcadeStyle(0, 0);
 
+    m_Arm.setArmSpeed(0);
   }
 
   // Returns true when the command should end.

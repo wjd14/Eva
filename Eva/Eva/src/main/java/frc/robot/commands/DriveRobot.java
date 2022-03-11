@@ -56,7 +56,7 @@ public class DriveRobot extends CommandBase {
     @Override
     public void execute() {
         double speed = RobotContainer.getInstance().getDriverController().getRawAxis(1)*-.5;
-        double rotation = RobotContainer.getInstance().getDriverController().getRawAxis(4)*.5;
+        double rotation = RobotContainer.getInstance().getDriverController().getRawAxis(0)*.5;
         
         m_driveTrain.driveArcadeStyle(speed, rotation);
     }
@@ -64,6 +64,7 @@ public class DriveRobot extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        m_driveTrain.driveArcadeStyle(0,0);
     }
 
     // Returns true when the command should end.

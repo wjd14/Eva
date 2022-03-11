@@ -10,7 +10,7 @@ import frc.robot.subsystems.*;
 
 public class AutoDriveRobotBackward extends CommandBase {
   private final DriveTrain m_driveTrain;
-  private double m_speed=-1; 
+  private double m_speed=0; 
 
   /** Creates a new AutoDriveRobotBackward. */
   public AutoDriveRobotBackward(DriveTrain subsystem, double inputspeed) {
@@ -26,11 +26,15 @@ public class AutoDriveRobotBackward extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_driveTrain.driveArcadeStyle(m_speed*-1, 0);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_driveTrain.driveArcadeStyle(0,0);
+  }
 
   // Returns true when the command should end.
   @Override

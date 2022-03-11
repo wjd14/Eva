@@ -5,18 +5,22 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.*;
 import frc.robot.subsystems.*;
-public class AutoDriveRobotTurn extends CommandBase {
-  private final DriveTrain m_driveTrain;
-  private double m_rotate=0; 
-  /** Creates a new AutoDriveRobotForward. */
-  public AutoDriveRobotTurn(DriveTrain subsystem, double inputrotatespeed) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    m_driveTrain = subsystem;
-    addRequirements(m_driveTrain);
-    m_rotate = inputrotatespeed;
-  }
+public class RunIntakeInAntonymous extends CommandBase {
+
+private final Intake m_Intake;
+private double m_rotation=0;
+
+    public RunIntakeInAntonymous(Intake subsystem, double rotation) {
+      m_Intake = subsystem;
+      addRequirements(m_Intake);
+      m_rotation = rotation;
+    }
+
+  /** Creates a new RunIntake
+   * 
+   * InAntonymous. */
+
 
   // Called when the command is initially scheduled.
   @Override
@@ -25,13 +29,15 @@ public class AutoDriveRobotTurn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  m_driveTrain.driveArcadeStyle(0,m_rotate);
+    m_Intake.SpinIntake(m_rotation);
+
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-  m_driveTrain.driveArcadeStyle(0, 0);
+   m_Intake.SpinIntake(0);
 
   }
 
