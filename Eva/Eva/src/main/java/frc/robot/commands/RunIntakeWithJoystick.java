@@ -28,7 +28,7 @@ private final Intake m_Intake;
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double rotation = RobotContainer.getInstance().getScoreController().getRawAxis(1)* 0.5;
+    double rotation = RobotContainer.getInstance().getScoreController().getRawAxis(5)* 1;
 
     m_Intake.SpinIntake(rotation);
   }

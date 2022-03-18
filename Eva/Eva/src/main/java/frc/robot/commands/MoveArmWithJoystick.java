@@ -30,7 +30,7 @@ public class MoveArmWithJoystick extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double armSpeed = RobotContainer.getInstance().getScoreController().getRawAxis(1) * 0.5;
+    double armSpeed = RobotContainer.getInstance().getScoreController().getRawAxis(1) * -0.15;
 
     m_Arm.setArmSpeed(armSpeed);
 

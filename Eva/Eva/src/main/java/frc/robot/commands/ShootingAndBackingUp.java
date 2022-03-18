@@ -4,22 +4,29 @@
 
 package frc.robot.commands;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class ShootingAndBackingUp extends SequentialCommandGroup {
-
+  private final DriveTrain m_driveTrain;
+  private final Intake m_intake; 
 
   /** Creates a new ShootingAndBackingUp. */
-  public ShootingAndBackingUp() {
+  public ShootingAndBackingUp(DriveTrain drive_subsystem, Intake intake_subsystem ) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
+    m_driveTrain = drive_subsystem;
+    m_intake = intake_subsystem;
+
+
     addCommands(
 
-      new RunIntakeWithSpeed(RobotContainer.getInstance().m_intake, 1).withTimeout(3),
-      new AutoDriveRobotBackward(RobotContainer.getInstance().m_driveTrain, .5).withTimeout(3)
+      new RunIntakeWithSpeed(m_intake, -1).withTimeout(1),
+      new AutoDriveRobotBackward(m_driveTrain, .7).withTimeout(4)
     );
   }
 }
