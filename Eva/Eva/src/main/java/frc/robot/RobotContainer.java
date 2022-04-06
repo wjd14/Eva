@@ -42,7 +42,7 @@ public class RobotContainer {
     public final DriveTrain m_driveTrain = new DriveTrain();
     public final Arm m_arm = new Arm();
     public final Intake m_intake = new Intake();
-
+    public final Climber m_climber = new Climber();
 // Joysticks
 private final Joystick scoreController = new Joystick(1);
 private final Joystick driverController = new Joystick(0);
