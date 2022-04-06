@@ -64,12 +64,10 @@ leftMotors = new MotorControllerGroup(frontLeft, backLeft  );
  
 
 frontRight = new WPI_VictorSPX(4);
-
  
  
 
 backRight = new WPI_VictorSPX(5);
-
  
  
 
@@ -82,7 +80,6 @@ differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
  differentialDrive.setSafetyEnabled(true);
 differentialDrive.setExpiration(0.1);
 differentialDrive.setMaxOutput(1.0);
-
 
 
 
